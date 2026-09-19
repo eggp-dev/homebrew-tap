@@ -1,9 +1,9 @@
 # Homebrew tap for Conn
 
-[Conn](https://github.com/eggplantiny/conn) is a terminal you share with the AI agent you already use: it works in your shell, you approve what matters, and typing takes the keyboard back.
+[Conn](https://github.com/eggp-dev/conn) is a terminal you share with the AI agent you already use: it works in your shell, you approve what matters, and typing takes the keyboard back.
 
 ```sh
-brew install --cask eggplantiny/tap/conn
+brew install --cask eggp-dev/tap/conn
 ```
 
 Apple Silicon, macOS 12 or newer. The cask installs the signed and notarized DMG from Conn's GitHub releases and checks it against the SHA-256 published with that release. Conn updates itself from inside the app afterwards.

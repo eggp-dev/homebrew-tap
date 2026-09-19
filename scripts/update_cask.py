@@ -9,7 +9,7 @@ newest published, non-draft release. The checksum comes from that release's own 
 """
 import json, os, pathlib, re, sys, urllib.request
 
-REPO = os.environ.get("CONN_REPO", "eggplantiny/conn")
+REPO = os.environ.get("CONN_REPO", "eggp-dev/conn")
 CASK = pathlib.Path(__file__).resolve().parent.parent / "Casks" / "conn.rb"
 
 def get(url: str) -> bytes:

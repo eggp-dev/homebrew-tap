@@ -2,13 +2,13 @@ cask "conn" do
   version "0.8.1"
   sha256 "6fa2b92989eb7537e6ebbb57e319ea35e73cc0f407aed0b393065a10df1d56d1"
 
-  url "https://github.com/eggplantiny/conn/releases/download/v#{version}/conn-v#{version}-aarch64-apple-darwin-desktop.dmg"
+  url "https://github.com/eggp-dev/conn/releases/download/v#{version}/conn-v#{version}-aarch64-apple-darwin-desktop.dmg"
   name "Conn"
   desc "Terminal you share with your AI agent, with approvals and takeover"
-  homepage "https://github.com/eggplantiny/conn"
+  homepage "https://github.com/eggp-dev/conn"
 
   livecheck do
-    url "https://github.com/eggplantiny/conn/releases"
+    url "https://github.com/eggp-dev/conn/releases"
     regex(%r{/releases/tag/v(\d+(?:\.\d+)+)}i)
     strategy :page_match
   end

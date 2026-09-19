@@ -14,12 +14,12 @@ jobs:
       - uses: actions/checkout@v6
       - name: Use this checkout as the tap
         run: |
-          mkdir -p "$(brew --repository)/Library/Taps/eggplantiny"
-          ln -s "$PWD" "$(brew --repository)/Library/Taps/eggplantiny/homebrew-tap"
+          mkdir -p "$(brew --repository)/Library/Taps/eggp-dev"
+          ln -s "$PWD" "$(brew --repository)/Library/Taps/eggp-dev/homebrew-tap"
       - name: Audit the cask
-        run: brew audit --cask --strict eggplantiny/tap/conn
+        run: brew audit --cask --strict eggp-dev/tap/conn
       - name: Install with the one line people will type
-        run: brew install --cask eggplantiny/tap/conn
+        run: brew install --cask eggp-dev/tap/conn
       - name: The app is there, signed, notarized and the expected version
         run: |
           test -d /Applications/Conn.app
@@ -30,5 +30,5 @@ jobs:
           echo "cask $expected, app $actual"; test "$expected" = "$actual"
       - name: Uninstall cleanly
         run: |
-          brew uninstall --cask eggplantiny/tap/conn
+          brew uninstall --cask eggp-dev/tap/conn
           test ! -e /Applications/Conn.app
