@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: write
 jobs:
   update:
     runs-on: ubuntu-24.04
@@ -22,3 +23,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "conn $version"
           git push
+          # A push made with the workflow token starts no other workflow, so the real
+          # install test has to be asked for; dispatching it is allowed.
+          gh workflow run test.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
