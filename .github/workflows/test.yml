@@ -1,0 +1,34 @@
+name: Install on macOS
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  install:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use this checkout as the tap
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/eggplantiny"
+          ln -s "$PWD" "$(brew --repository)/Library/Taps/eggplantiny/homebrew-tap"
+      - name: Audit the cask
+        run: brew audit --cask --strict eggplantiny/tap/conn
+      - name: Install with the one line people will type
+        run: brew install --cask eggplantiny/tap/conn
+      - name: The app is there, signed, notarized and the expected version
+        run: |
+          test -d /Applications/Conn.app
+          codesign --verify --deep --strict /Applications/Conn.app
+          spctl --assess --type execute --verbose /Applications/Conn.app
+          expected="$(sed -n 's/^  version "\(.*\)"$/\1/p' Casks/conn.rb)"
+          actual="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' /Applications/Conn.app/Contents/Info.plist)"
+          echo "cask $expected, app $actual"; test "$expected" = "$actual"
+      - name: Uninstall cleanly
+        run: |
+          brew uninstall --cask eggplantiny/tap/conn
+          test ! -e /Applications/Conn.app
