@@ -1,6 +1,6 @@
 cask "conn" do
-  version "0.8.5"
-  sha256 "6f783e520fccc88309123421aade218d8d814953d906cb6f3f2acdf65ef7982c"
+  version "0.8.6"
+  sha256 "24ba684b44147cb595642d5c671323a9cd95547bb535b40eecad3f9e903db7df"
 
   url "https://github.com/eggp-dev/conn/releases/download/v#{version}/conn-v#{version}-aarch64-apple-darwin-desktop.dmg"
   name "Conn"
